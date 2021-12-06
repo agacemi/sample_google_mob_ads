@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart' as google_mobile_ads;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workmanager/workmanager.dart';
+import 'package:mobile_ads_issue_sample/native_ad.dart';
 
 import 'banner_ad.dart';
 
@@ -15,21 +13,6 @@ void main() {
 }
 
 const simpleTaskKey = "simpleTask";
-
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) async {
-    switch (task) {
-      case simpleTaskKey:
-        print("$simpleTaskKey was executed. inputData = $inputData");
-        final prefs = await SharedPreferences.getInstance();
-        prefs.setBool("test", true);
-        print("Bool from prefs: ${prefs.getBool("test")}");
-        break;
-    }
-
-    return Future.value(true);
-  });
-}
 
 class MyApp extends StatefulWidget {
   @override
@@ -59,106 +42,82 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter WorkManager Example"),
+          title: Text("Ads Issues Sample"),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+        body: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                BannerAd(
-                  google_mobile_ads.BannerAd.testAdUnitId,
-                  adSize: google_mobile_ads.AdSize.largeBanner,
+                Text("Banner Ad - First Ad", style: Theme.of(context).textTheme.headline6),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: BannerAd(
+                    '/5813/FRfr-ANDROID/HP/BANNER_1',
+                    adSize: google_mobile_ads.AdSize.largeBanner,
+                  ),
                 ),
-                Text(
-                  "Plugin initialization",
-                  style: Theme.of(context).textTheme.headline5,
+                Divider(),
+                Text("Native Ad - Vertical Template", style: Theme.of(context).textTheme.headline6),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: NativeAd(
+                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_1',
+                    height: 300,
+                    adFactoryId: 'vertical_template',
+                    onAdLoaded: () {},
+                  ),
                 ),
-                ElevatedButton(
-                  child: Text("Start the Flutter background service"),
-                  onPressed: () {
-                    Workmanager().initialize(
-                      callbackDispatcher,
-                      isInDebugMode: true,
-                    );
-                  },
-                ),
-                SizedBox(height: 16),
-                //This task runs once.
-                //Most likely this will trigger immediately
+                Divider(),
+                Text("Native Ad - Horizontal Template", style: Theme.of(context).textTheme.headline6),
 
-                Text(
-                  "One Off Tasks (Android only)",
-                  style: Theme.of(context).textTheme.headline5,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: NativeAd(
+                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_2',
+                    height: 140,
+                    adFactoryId: 'horizontal_template',
+                    onAdLoaded: () {},
+                  ),
                 ),
-                //This task runs once.
-                //Most likely this will trigger immediately
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Register OneOff Task"),
-                  onPressed: () {
-                    Workmanager().registerOneOffTask(
-                      "1",
-                      simpleTaskKey,
-                      inputData: <String, dynamic>{
-                        'int': 1,
-                        'bool': true,
-                        'double': 1.0,
-                        'string': 'string',
-                        'array': [1, 2, 3],
-                      },
-                    );
-                  },
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: NativeAd(
+                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_3',
+                    height: 140,
+                    adFactoryId: 'horizontal_template',
+                    onAdLoaded: () {},
+                  ),
                 ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: NativeAd(
+                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_4',
+                    height: 140,
+                    adFactoryId: 'horizontal_template',
+                    onAdLoaded: () {},
+                  ),
                 ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
+                Divider(),
+                Text("Stretch Ad not working :(", style: Theme.of(context).textTheme.headline6),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: BannerAd(
+                    '/5813/FRfr-ANDROID/HP/STICKY',
+                  ),
                 ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
+                Divider(),
+                Text("However using Google banner test, works well", style: Theme.of(context).textTheme.headline6),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: BannerAd(
+                    google_mobile_ads.BannerAd.testAdUnitId,
+                  ),
                 ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
-                ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
-                ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
-                ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
-                ),
-                PlatformEnabledButton(
-                  platform: _Platform.android,
-                  child: Text("Fake button"),
-                  onPressed: () {
-                  },
-                ),
+
               ],
             ),
           ),

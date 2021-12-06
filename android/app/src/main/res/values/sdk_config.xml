@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="sdkidfm_toast_error_enabled">true</bool>
+    <bool name="sdkidfm_web_content_debugging_enabled">true</bool>
+    <bool name="sdkidfm_http_logging_enabled">true</bool>
+</resources>

@@ -1,21 +1,19 @@
-name: workmanager_example
-description: Demonstrates how to use the workmanager plugin.
+name: mobile_ads_issue_sample
+description: Demonstrates Ads perfoormance issue.
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.12.0-0 <3.0.0"
+  sdk: '>=2.14.0 <3.0.0'
+  flutter: ^2.5.1
 
 dependencies:
   path_provider: ^2.0.2
   google_mobile_ads: ^1.0.0
   shared_preferences: ^2.0.6
-  workmanager: ^0.4.1
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  integration_test:
-    sdk: flutter
   flutter_test:
     sdk: flutter
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                  xmlns:tools="http://schemas.android.com/tools"
+                                                  android:layout_width="match_parent"
+                                                  android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/medium_spacing"
+            android:background="@drawable/rounded_background">
+
+        <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_native_ad_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitStart"
+                android:adjustViewBounds="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_native_ad_headline"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.SelectedCornerRadius"
+                tools:srcCompat="@drawable/launch_background"/>
+
+        <TextView
+                android:id="@+id/tv_native_ad_headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_spacing"
+                android:layout_marginTop="@dimen/standard_spacing"
+                android:layout_marginEnd="@dimen/medium_spacing"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/standard_text_size"
+                app:layout_constraintLeft_toLeftOf="@id/iv_native_ad_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_native_ad_icon"
+                app:layout_constraintBottom_toTopOf="@id/tv_native_ad_body"
+                tools:text="Cartes Avatnages Weekend" />
+
+        <TextView
+                android:id="@+id/tv_native_ad_body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_spacing"
+                android:textColor="#828282"
+                android:textSize="@dimen/half_text_size"
+                android:minLines="3"
+                app:layout_constraintLeft_toLeftOf="@id/tv_native_ad_headline"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_native_ad_headline"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Bénéficiez de réduction sur vos voyages toute l'année Bénéficiez de réduction sur vos voyages toute l'année
+            Bénéficiez de réduction sur vos voyages toute l'année" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.gms.ads.nativead.NativeAdView>
