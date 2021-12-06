@@ -44,80 +44,86 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("Ads Issues Sample"),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: SingleChildScrollView(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text("Banner Ad - First Ad", style: Theme.of(context).textTheme.headline6),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: BannerAd(
-                    '/5813/FRfr-ANDROID/HP/BANNER_1',
-                    adSize: google_mobile_ads.AdSize.largeBanner,
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Text("Banner Ad - First Ad", style: Theme.of(context).textTheme.headline6),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: BannerAd(
+                            '/5813/FRfr-ANDROID/HP/BANNER_1',
+                            adSize: google_mobile_ads.AdSize.largeBanner,
+                          ),
+                        ),
+                        Divider(),
+                        Text("Native Ad - Vertical Template", style: Theme.of(context).textTheme.headline6),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: NativeAd(
+                            adUnitId: '/5813/FRfr-ANDROID/HP/BP_1',
+                            height: 300,
+                            adFactoryId: 'vertical_template',
+                            onAdLoaded: () {},
+                          ),
+                        ),
+                        Divider(),
+                        Text("Native Ad - Horizontal Template", style: Theme.of(context).textTheme.headline6),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: NativeAd(
+                            adUnitId: '/5813/FRfr-ANDROID/HP/BP_2',
+                            height: 140,
+                            adFactoryId: 'horizontal_template',
+                            onAdLoaded: () {},
+                          ),
+                        ),
+                        Divider(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: NativeAd(
+                            adUnitId: '/5813/FRfr-ANDROID/HP/BP_3',
+                            height: 140,
+                            adFactoryId: 'horizontal_template',
+                            onAdLoaded: () {},
+                          ),
+                        ),
+                        Divider(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: NativeAd(
+                            adUnitId: '/5813/FRfr-ANDROID/HP/BP_4',
+                            height: 140,
+                            adFactoryId: 'horizontal_template',
+                            onAdLoaded: () {},
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Divider(),
-                Text("Native Ad - Vertical Template", style: Theme.of(context).textTheme.headline6),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: NativeAd(
-                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_1',
-                    height: 300,
-                    adFactoryId: 'vertical_template',
-                    onAdLoaded: () {},
+                Container(
+                  decoration: BoxDecoration(color: Colors.blueGrey),
+                  child: Column(
+                    children: [
+                      Text("Stretch Ad not working :( but works with BannerAd.testAdUnitId",
+                          style: Theme.of(context).textTheme.bodyText2),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: BannerAd(
+                          '/5813/FRfr-ANDROID/HP/STICKY',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Divider(),
-                Text("Native Ad - Horizontal Template", style: Theme.of(context).textTheme.headline6),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: NativeAd(
-                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_2',
-                    height: 140,
-                    adFactoryId: 'horizontal_template',
-                    onAdLoaded: () {},
-                  ),
-                ),
-                Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: NativeAd(
-                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_3',
-                    height: 140,
-                    adFactoryId: 'horizontal_template',
-                    onAdLoaded: () {},
-                  ),
-                ),
-                Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: NativeAd(
-                    adUnitId: '/5813/FRfr-ANDROID/HP/BP_4',
-                    height: 140,
-                    adFactoryId: 'horizontal_template',
-                    onAdLoaded: () {},
-                  ),
-                ),
-                Divider(),
-                Text("Stretch Ad not working :(", style: Theme.of(context).textTheme.headline6),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: BannerAd(
-                    '/5813/FRfr-ANDROID/HP/STICKY',
-                  ),
-                ),
-                Divider(),
-                Text("However using Google banner test, works well", style: Theme.of(context).textTheme.headline6),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: BannerAd(
-                    google_mobile_ads.BannerAd.testAdUnitId,
-                  ),
-                ),
-
               ],
             ),
           ),
